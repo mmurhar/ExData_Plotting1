@@ -1,0 +1,7 @@
+setwd("C:\\Users\\murhar.family\\Desktop\\coursera\\Explore_data_analysis\\week1_project\\power_consump")
+data<-read.table("household_power_consumption.txt", header=TRUE,sep=";",stringsAsFactors=FALSE)
+req_data<-subset(data,Date %in% c("1/2/2007","2/2/2007") ,select=Global_active_power)
+global_act_power<-as.numeric(req_data$Global_active_power)
+hist(global_act_power,col="red", main = "Global Active Power", xlab = "Global Active Power(kilowatts)")
+dev.copy(png, file = "plot1.png")
+dev.off()

@@ -1,0 +1,10 @@
+setwd("C:\\Users\\murhar.family\\Desktop\\coursera\\Explore_data_analysis\\week1_project\\power_consump")
+data<-read.table("household_power_consumption.txt", header=TRUE,sep=";",stringsAsFactors=FALSE)
+req_data<-subset(data,Date %in% c("1/2/2007","2/2/2007") ,select=c(Sub_metering_1, Sub_metering_2, Sub_metering_3, Date, Time))
+cmplt_date_time <- strptime(paste(req_data$Date, req_data$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
+png("plot3.png",height = 480,width = 480)
+plot(cmplt_date_time,req_data$Sub_metering_1,type = "l",ylab = "Energy Sub Metering",xlab = "")
+lines(cmplt_date_time,req_data$Sub_metering_2,col="red")
+lines(cmplt_date_time,req_data$Sub_metering_3,col="blue")
+legend("topright",legend = c("sub_metering1","sub_metering2","sub_metering3"),col = c("black","red","blue"),lty = 1,lwd=2)
+dev.off
